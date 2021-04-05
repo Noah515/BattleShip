@@ -17,12 +17,8 @@ public class Player
 	public Player(String name) 
 	{
 		this.name = name;
-		
 	}
 
-
-		
-	
 	public static void shipPlacement(Ship ship)
 	{	
 		boolean validInput = false;
@@ -31,11 +27,14 @@ public class Player
 			playerBoard.printBoardSetup();
 			System.out.println("You have chose to place your "  + ship.name + " Type the coordinates of where you would like to place the front of your ship. Please input your X");
 			ship.coordinatesx = input.nextInt();
+			//Setting X coord
 			System.out.println("Please input your Y");
 			ship.coordinatesy = input.nextInt();
+			//Setting Y coord
 			System.out.println("Please type 1 for Vertical or 2 for Horizontal");
 			int orientation = input.nextInt();
 			if (orientation == '1')
+			//Setting orientation
 			{
 				ship.isVertical = true;
 			}
@@ -43,30 +42,51 @@ public class Player
 			{
 				ship.isVertical = false;
 			}
+			//Changing to isVertical to true or false based on input
 			//TODO: Still need valid input checking
-			
+		
 			if (orientation == 1)
 			{
-				if (ship.coordinatesx > 8 || ship.coordinatesy > 8)
+				if (ship.coordinatesy + ship.size > 8 || ship.coordinatesy < 0)
 				{
 					System.out.println("Please input a number that fits in the 8 by 8 grid");
 				}
+				else
+				{
+					validInput = true;
+				}
 					
 			}
-			for(int i = 0; i < ship.size; i++)
+			else if (orientation == 2)
 			{
-				if(ship.isVertical)
+				if (ship.coordinatesx < 0 || ship.coordinatesx + ship.size > 8)
 				{
-					playerBoard.setShip(ship.coordinatesx, ship.coordinatesy + i);
+					System.out.println("Please input a number that fits in the 8 by 8 grid");
 				}
 				else
 				{
-					playerBoard.setShip(ship.coordinatesx + i, ship.coordinatesy);
-					
+					validInput = true;
 				}
+					
 			}
-		
+			
 		}
+			//Checking if the ship fits on the board
+		for(int i = 0; i < ship.size; i++)
+		{
+			if(ship.isVertical)
+			{
+				playerBoard.setShip(ship.coordinatesx, ship.coordinatesy + i);
+			}
+			else
+			{
+				playerBoard.setShip(ship.coordinatesx + i, ship.coordinatesy);
+				
+			}
+			//If the ship fits on the board this will change orientation
+		}
+		
+		
 	}
 
 	
@@ -79,6 +99,7 @@ public class Player
 			int shipNum = input.nextInt();
 			boolean validInput = false;
 			switch(shipNum)
+			//asking what ship to place
 			{
 				case 1:
 					shipPlacement(carrier);
@@ -99,14 +120,9 @@ public class Player
 				case 5:
 					shipPlacement(destroyer);
 					break;
+			//calling shipPlacement function for each ship to place the ship on board
 				
 				
-				
-				
-			
-			
-			
-			
 			}
 		}
 	}
