@@ -2,9 +2,9 @@ package battleshipcode;
 
 public class Board 
 {
-	public static Tiles[][] board = new Tiles [8][8];
+	public Tiles[][] board = new Tiles [8][8];
 	
-	public static void setTile()
+	public void setTile()
 	{
 		for (int x = 0; x < 8; x++)
 		{
@@ -17,12 +17,12 @@ public class Board
 		}
 	}
 	
-	public static void setShip(int x, int y)
+	public void setShip(int x, int y)
 	{
 		board[x][y].hasShip = true;
 	}
 
-	public static void printEnemyBoard() 
+	public void printEnemyBoard() 
 	{
 		for (int x = 0; x < 8; x++)
 		{
@@ -34,7 +34,7 @@ public class Board
 			System.out.println();
 		}
 	}
-	public static void printBoardSetup() 
+	public void printBoardSetup() 
 	{
 		for (int x = 0; x < 8; x++)
 		{

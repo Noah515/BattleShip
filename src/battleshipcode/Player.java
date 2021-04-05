@@ -4,22 +4,24 @@ import java.util.Scanner;
 
 public class Player 
 {
-	public static Board playerBoard = new Board();
-	public static Board enemyBoard = new Board();
-	public static String name;
-	public static Ship carrier = new Ship("carrier", 5);
-	public static Ship battleship = new Ship("battleship", 4);
-	public static Ship cruiser = new Ship("cruiser", 3);
-	public static Ship submarine = new Ship("sumbarine", 3);
-	public static Ship destroyer = new Ship("destroyer", 2);
-	public static Scanner input = new Scanner( System.in );
+	public Board playerBoard = new Board();
+	public Board enemyBoard = new Board();
+	public String name;
+	
+	public Ship carrier = new Ship("carrier", 5);
+	public Ship battleship = new Ship("battleship", 4);
+	public Ship cruiser = new Ship("cruiser", 3);
+	public Ship submarine = new Ship("submarine", 3);
+	public Ship destroyer = new Ship("destroyer", 2);
+	
+	public Scanner input = new Scanner( System.in );
 	
 	public Player(String name) 
 	{
 		this.name = name;
 	}
 
-	public static void shipPlacement(Ship ship)
+	public void shipPlacement(Ship ship)
 	{	
 		boolean validInput = false;
 		while (validInput == false)
@@ -67,9 +69,7 @@ public class Player
 				{
 					validInput = true;
 				}
-					
 			}
-			
 		}
 			//Checking if the ship fits on the board
 		for(int i = 0; i < ship.size; i++)
@@ -85,13 +85,12 @@ public class Player
 			}
 			//If the ship fits on the board this will change orientation
 		}
-		
-		
 	}
 
-	
-	public static void boardSetup()
+	public void boardSetup()
 	{
+		System.out.println("SHIPS: " + carrier.name + " " + battleship.name + " " + cruiser.name + " " + submarine.name + " " + destroyer.name);
+		
 		while(!carrier.isPlaced && !battleship.isPlaced && !cruiser.isPlaced && !submarine.isPlaced && !destroyer.isPlaced)
 		{ 
 			System.out.println("Which ship would you like to place first the (1) carrier,  (2) battleship, (3) cruiser, (4) submarine, or (5) destroyer?");
